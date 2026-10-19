@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2a4a35">
+  <link rel="icon" type="image/svg+xml" href="/favicon_sm.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <title>Konihaus-App – Ihr Zuhause in einer ruhigen App | Konihaus</title>
+  <meta name="description" content="Die Konihaus-App zeigt Räume, Heizung, Sicherheit und Energie übersichtlich an – lokal in Ihrem System, ohne Cloud-Pflicht. Optional: Ihr Zuhause läuft auch ohne App von selbst.">
+  <meta name="author" content="Konrad Hefelle">
+  
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://app.konihaus.ch/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Konihaus-App – Ihr Zuhause in einer ruhigen App | Konihaus">
+  <meta property="og:description" content="Die Konihaus-App zeigt Räume, Heizung, Sicherheit und Energie übersichtlich an – lokal in Ihrem System, ohne Cloud-Pflicht. Optional: Ihr Zuhause läuft auch ohne App von selbst.">
+  <meta property="og:url" content="https://app.konihaus.ch/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_CH">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://konihaus.ch/images/og-image.jpg">
+  <meta property="fb:app_id" content="2188289105366537" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://konihaus.ch/images/og-image.jpg">
+  <meta name="twitter:title" content="Konihaus-App – Ihr Zuhause in einer ruhigen App | Konihaus">
+  <meta name="twitter:description" content="Die Konihaus-App zeigt Räume, Heizung, Sicherheit und Energie übersichtlich an – lokal in Ihrem System, ohne Cloud-Pflicht. Optional: Ihr Zuhause läuft auch ohne App von selbst.">
+  <!-- Fonts: self-hosted (see @font-face in styles.css); no request to Google -->
+  <link rel="preload" href="/fonts/outfit-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/cormorant-garamond-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/cormorant-garamond-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/app.css">
+  <script>
+    /* readability preferences (Aa button), applied before first paint so the text size doesn't jump; logic mirrors scripts.js */
+    (function(){try{var d=document.documentElement,p=JSON.parse(localStorage.getItem('konihaus-readability')||'{}');
+    if(p.text==='large'||p.text==='xl')d.setAttribute('data-text',p.text);
+    if(p.contrast===true)d.setAttribute('data-contrast','high');
+    if(p.motion===true||(typeof p.motion!=='boolean'&&window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))d.setAttribute('data-motion','reduce');}catch(e){}})();
+  </script>
+</head>
+
+<body class="example-body example-body--base app-body">
+
+  <nav class="nav nav--solid " id="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="https://konihaus.ch/" class="logo" aria-label="Konihaus">
+          <div class="logo-image"></div>
+          <div class="wordmark">konihaus</div>
+        </a>
+        <ul class="nav__links">
+            <li class="has-sub">
+              <a href="https://konihaus.ch/#about" class="nav__parent" aria-haspopup="true"><span data-i18n="nav.about_us">Über uns</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub">
+                <li><a href="https://konihaus.ch/#intro" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+                <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+                <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l4">Über Koni</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="https://konihaus.ch/#packages" class="nav__parent" aria-haspopup="true"><span data-i18n="nav.service">Service</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+              <ul class="nav__sub">
+                <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+                <li><a href="https://konihaus.ch/#devices" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+                <li><a href="https://konihaus.ch/#faq" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+                <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col1_l4">Kontakt</a></li>
+              </ul>
+            </li>
+            <li><a href="https://konihaus.ch/" class="nav__app active" aria-current="page"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+            <li><a href="https://blog.konihaus.ch" data-i18n="nav.blog">Blog</a></li>
+          </ul>
+        <div class="language-picker">
+          <button
+            type="button"
+            class="language-trigger"
+            aria-expanded="false"
+            aria-controls="language-options"
+            aria-label="Language: Deutsch"
+          >
+            <span class="language-current">DE</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+
+          <div id="language-options" class="language-options" hidden>
+            <button type="button" class="language-option" data-lang="de">
+              <span>Deutsch</span>
+              <span class="language-code">DE</span>
+            </button>
+            <button type="button" class="language-option" data-lang="en">
+              <span>English</span>
+              <span class="language-code">EN</span>
+            </button>
+          </div>
+
+          <select id="lang-selector" hidden>
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <a href="https://konihaus.ch/#contact" class="btn nav__cta" data-i18n="nav.cta">Kostenlose Beratung</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav__drawer" id="drawer">
+    <ul>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-about"><span data-i18n="nav.about_us">Über uns</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-about" hidden>
+          <li><a href="https://konihaus.ch/#intro" class="drawer-link" data-i18n="footer.col2_l1">Was ist Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#process" class="drawer-link" data-i18n="footer.col2_l2">So funktioniert&#x27;s</a></li>
+          <li><a href="https://konihaus.ch/#why" class="drawer-link" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+          <li><a href="https://konihaus.ch/#about" class="drawer-link" data-i18n="footer.col2_l4">Über Koni</a></li>
+        </ul>
+      </li>
+      <li class="drawer-group">
+        <button type="button" class="drawer-acc" aria-expanded="false" aria-controls="dg-service"><span data-i18n="nav.service">Service</span><svg class="chev" width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+        <ul class="drawer-sub" id="dg-service" hidden>
+          <li><a href="https://konihaus.ch/#packages" class="drawer-link" data-i18n="footer.col1_l1">Pakete &amp; Preise</a></li>
+          <li><a href="https://konihaus.ch/#devices" class="drawer-link" data-i18n="footer.col1_l2">Geräte &amp; Technik</a></li>
+          <li><a href="https://konihaus.ch/#faq" class="drawer-link" data-i18n="footer.col1_l3">Häufige Fragen</a></li>
+          <li><a href="https://konihaus.ch/#contact" class="drawer-link" data-i18n="footer.col1_l4">Kontakt</a></li>
+        </ul>
+      </li>
+      <li><a href="https://konihaus.ch/" class="drawer-link"><span data-i18n="nav.app">App</span><span class="nav__badge" data-i18n="nav.new">Neu</span></a></li>
+      <li><a href="https://blog.konihaus.ch" class="drawer-link" data-i18n="nav.blog">Blog</a></li>
+    </ul>
+    <a href="https://konihaus.ch/#contact" class="drawer-cta drawer-link" data-i18n="nav.cta">Kostenlose Beratung →</a>
+  </div>
+  
+  <header class="app-hero">
+    <div class="container app-hero__in">
+      <div class="app-hero__txt">
+        <p class="sec-eye reveal" data-i18n="app_page.eyebrow">Die Konihaus-App</p>
+        <h1 class="app-hero__h reveal d1" data-i18n="app_page.h1" data-i18n-html="true">Ihr Zuhause.<br><em>In Ihrer Hand.</em></h1>
+        <p class="app-hero__sub reveal d2" data-i18n="app_page.sub">Räume, Heizung, Sicherheit und Energie — ruhig und übersichtlich in einer App. Sie läuft lokal in Ihrem System, und Ihr Zuhause funktioniert auch dann, wenn Sie nie hineinschauen.</p>
+        <div class="app-hero__actions reveal d3">
+          <a href="https://konihaus.ch/#contact" class="btn btn-primary" data-i18n="app_page.cta1">Kostenlose Beratung →</a>
+          <a href="#features" class="btn btn-ghost" data-i18n="app_page.cta2">Funktionen ansehen</a>
+        </div>
+        <p class="app-hero__note reveal d3" data-i18n="app_page.hero_note">Neu bei Konihaus · Bilder aus einer echten Installation</p>
+      </div>
+      <div class="app-hero__ph reveal d2">
+        <div class="app-rotor" id="app-rotor"><div class="app-phone app-phone__img is-on"><img src="/img/favorites.webp" width="433" height="938" decoding="async" alt="Konihaus-App: Favoriten mit Türen, Wetter und Heizung" data-alt="1"></div><div class="app-phone app-phone__img"><img src="/img/rooms.webp" width="433" height="938" loading="lazy" decoding="async" alt="Konihaus-App: Räume mit Licht, Storen und Fenstern" data-alt="2"></div><div class="app-phone app-phone__img"><img src="/img/climate.webp" width="433" height="938" loading="lazy" decoding="async" alt="Konihaus-App: Heizung und Klima mit 72-Stunden-Verläufen" data-alt="3"></div><div class="app-phone app-phone__img"><img src="/img/security.webp" width="433" height="938" loading="lazy" decoding="async" alt="Konihaus-App: Sicherheit mit Fenster- und Türstatus" data-alt="4"></div><div class="app-phone app-phone__img"><img src="/img/energy.webp" width="433" height="938" loading="lazy" decoding="async" alt="Konihaus-App: Energieverbrauch mit Tagesdiagramm" data-alt="5"></div></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="app-feats" id="features">
+      <div class="container">
+        <div class="app-head">
+          <p class="sec-eye reveal" data-i18n="app_page.f_eye">Was die App kann</p>
+          <h2 class="app-h2 reveal d1" data-i18n="app_page.f_h2" data-i18n-html="true">Fünf Ansichten.<br><em>Alles Wichtige.</em></h2>
+        </div>
+      <div class="app-feat">
+        <div class="app-feat__txt reveal">
+          <span class="app-feat__num">01</span>
+          <h3 class="app-feat__t" data-i18n="app_page.f1_t">Favoriten & Wetter</h3>
+          <p class="app-feat__b" data-i18n="app_page.f1_b">Was Sie täglich brauchen, auf einer Seite: Türen, Wetter, Heizung und Ihre wichtigsten Geräte.</p>
+        </div>
+        <div class="app-feat__ph reveal d1">
+          <div class="app-phone"><img src="/img/favorites.webp" width="433" height="938" loading="lazy" decoding="async" alt="Konihaus-App: Favoriten mit Türen, Wetter und Heizung" data-alt="1"></div>
+        </div>
+      </div>
+      <div class="app-feat app-feat--rev">
+        <div class="app-feat__txt reveal">
+          <span class="app-feat__num">02</span>
+          <h3 class="app-feat__t" data-i18n="app_page.f2_t">Räume & Geräte</h3>
+          <p class="app-feat__b" data-i18n="app_page.f2_b">Licht, Storen, Fenster und Heizung pro Raum — mit einem Tipp bedient, ohne zwischen Geräte-Apps zu wechseln.</p>
+        </div>
+        <div class="app-feat__ph reveal d1">
+          <div class="app-phone"><img src="/img/rooms.webp" width="433" height="938" loading="lazy" decoding="async" alt="Konihaus-App: Räume mit Licht, Storen und Fenstern" data-alt="2"></div>
+        </div>
+      </div>
+      <div class="app-feat">
+        <div class="app-feat__txt reveal">
+          <span class="app-feat__num">03</span>
+          <h3 class="app-feat__t" data-i18n="app_page.f3_t">Heizung & Klima</h3>
+          <p class="app-feat__b" data-i18n="app_page.f3_b">Warmwasser, Wärmepumpe und Vorlauftemperatur der letzten 72 Stunden — Verläufe statt Rätselraten.</p>
+        </div>
+        <div class="app-feat__ph reveal d1">
+          <div class="app-phone"><img src="/img/climate.webp" width="433" height="938" loading="lazy" decoding="async" alt="Konihaus-App: Heizung und Klima mit 72-Stunden-Verläufen" data-alt="3"></div>
+        </div>
+      </div>
+      <div class="app-feat app-feat--rev">
+        <div class="app-feat__txt reveal">
+          <span class="app-feat__num">04</span>
+          <h3 class="app-feat__t" data-i18n="app_page.f4_t">Sicherheit im Überblick</h3>
+          <p class="app-feat__b" data-i18n="app_page.f4_b">Alle Fenster und Türen auf einen Blick: Was offen ist, sehen Sie sofort — farbig markiert, ohne Alarmflut.</p>
+        </div>
+        <div class="app-feat__ph reveal d1">
+          <div class="app-phone"><img src="/img/security.webp" width="433" height="938" loading="lazy" decoding="async" alt="Konihaus-App: Sicherheit mit Fenster- und Türstatus" data-alt="4"></div>
+        </div>
+      </div>
+      <div class="app-feat">
+        <div class="app-feat__txt reveal">
+          <span class="app-feat__num">05</span>
+          <h3 class="app-feat__t" data-i18n="app_page.f5_t">Energie verstehen</h3>
+          <p class="app-feat__b" data-i18n="app_page.f5_b">Verbrauch heute, in 7 oder 30 Tagen und im Jahr — einfache Zahlen und ein klares Diagramm.</p>
+        </div>
+        <div class="app-feat__ph reveal d1">
+          <div class="app-phone"><img src="/img/energy.webp" width="433" height="938" loading="lazy" decoding="async" alt="Konihaus-App: Energieverbrauch mit Tagesdiagramm" data-alt="5"></div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="app-principles">
+      <div class="container">
+        <div class="app-head">
+          <p class="sec-eye reveal" data-i18n="app_page.p_eye">Das Prinzip</p>
+          <h2 class="app-h2 reveal d1" data-i18n="app_page.p_h2" data-i18n-html="true">Ruhig statt <em>aufdringlich.</em></h2>
+        </div>
+        <div class="app-pgrid">
+          <div class="app-p reveal"><h3 data-i18n="app_page.p1_t">Lokal</h3><p data-i18n="app_page.p1_b">Die App läuft direkt in Ihrem eigenen System. Keine Cloud-Pflicht, Ihre Daten bleiben bei Ihnen.</p></div>
+          <div class="app-p reveal d1"><h3 data-i18n="app_page.p2_t">Mehrsprachig</h3><p data-i18n="app_page.p2_b">Deutsch, English und Magyar — in den Einstellungen umschaltbar.</p></div>
+          <div class="app-p reveal d2"><h3 data-i18n="app_page.p3_t">Optional</h3><p data-i18n="app_page.p3_b">Die Automatisierungen laufen von selbst. Die App ist da, wenn Sie nachsehen oder eingreifen möchten.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="app-cta">
+      <div class="container">
+        <h2 class="app-h2 reveal" data-i18n="app_page.cta_h2" data-i18n-html="true">Möchten Sie die App <em>live sehen?</em></h2>
+        <p class="app-cta__p reveal d1" data-i18n="app_page.cta_p">Im kostenlosen Beratungsgespräch zeige ich Ihnen die App an einer echten Installation und was sie für Ihr Zuhause leisten könnte.</p>
+        <a href="https://konihaus.ch/#contact" class="btn btn-primary reveal d2" data-i18n="app_page.cta_btn">Kostenlose Beratung</a>
+        <p class="app-disc reveal d2" data-i18n="app_page.disc">Die App ist neu und wird laufend weiterentwickelt. Die Bilder stammen aus einer echten Installation; persönliche Angaben wurden unkenntlich gemacht.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer ">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="https://konihaus.ch/" class="logo" aria-label="Konihaus">
+            <div class="logo-image"></div>
+            <div class="wordmark">konihaus</div>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Smart home managed service für Senioren, Mieter und
+            Ferienhausbesitzer in der
+            Schweiz.</p>
+          <div class="footer__social" aria-label="Social Media">
+            <a href="https://www.instagram.com/ch.konihaus/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/konihaus.ch" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 8.5h2.2V5.2h-2.4c-2.5 0-4.1 1.6-4.1 4.1v2H8.6v3.3h2.1V21h3.3v-6.4h2.2l.4-3.3h-2.6V9.6c0-.7.2-1.1 1-1.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://x.com/konihaus" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/konihaus" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="7.6" cy="8.2" r="1.15" fill="currentColor"/>
+                <path d="M7.6 11v6.3M11.3 11v6.3M11.3 13.6c0-1.6 1-2.6 2.3-2.6 1.3 0 2 .9 2 2.5v3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col1_title">Service</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l1">Standard</a></li>
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l2">Für Senioren</a></li>
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l3">Für Mieter</a></li>
+            <li><a href="https://konihaus.ch/#packages" data-i18n="footer.col1_l4">Für Ferienhäuser</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col2_title">Unternehmen</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/#about" data-i18n="footer.col2_l1">Über Koni</a></li>
+            <li><a href="https://konihaus.ch/#process" data-i18n="footer.col2_l2">So funktioniert's</a></li>
+            <li><a href="https://konihaus.ch/#why" data-i18n="footer.col2_l3">Warum Konihaus</a></li>
+            <li><a href="https://konihaus.ch/#contact" data-i18n="footer.col2_l4">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title" data-i18n="footer.col3_title">Rechtliches</div>
+          <ul class="flinks">
+            <li><a href="https://konihaus.ch/impressum" data-i18n="footer.col3_l1">Impressum</a></li>
+            <li><a href="https://konihaus.ch/datenschutz" data-legal="privacy" data-i18n="footer.col3_l2">Datenschutz</a></li>
+            <li><a href="https://konihaus.ch/#cookie-declaration" data-cc-open data-i18n="footer.col3_l3">Cookie-Erklärung</a></li>
+            <li><a href="https://konihaus.ch/agb" data-i18n="footer.col3_l4">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 Konihaus · Konrad Hefelle · Affoltern am Albis, Schweiz
+        </p>
+        <p class="fch" data-i18n="footer.ch">🇨🇭 Made in Switzerland</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const CUSTOM_BASE_DIR = '/';
+  </script>
+  <script src="/scripts.js"></script>
+  <script src="/cookie-consent.js"></script>
+  <script>
+    /* alt texts follow the page language */
+    (function () {
+      function setAlts() {
+        try { document.querySelectorAll('img[data-alt]').forEach(function (im) { var t = i18n.getText('app_page', 'alt' + im.getAttribute('data-alt')); if (t) im.alt = t; }); } catch (e) {}
+      }
+      new MutationObserver(function () { setTimeout(setAlts, 50); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+      window.addEventListener('load', function () { setTimeout(setAlts, 300); });
+    })();
+    /* hero phones: three visible at a time (centre in front, neighbours smaller and faded, partly covered), rotating like a carousel */
+    (function () {
+      var box = document.getElementById('app-rotor');
+      if (!box) return;
+      var slides = Array.prototype.slice.call(box.querySelectorAll('.app-phone__img'));
+      var n = slides.length, cur = 0, timer = null, HOLD = 4200;
+      function reduced() {
+        var d = document.documentElement;
+        return d.getAttribute('data-motion') === 'reduce' || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+      }
+      function layout() {
+        slides.forEach(function (s, i) {
+          var p = (i - cur + n) % n;
+          /* 0 centre, 1 right, n-1 left, others hidden behind (2 = hidden right, 3 = hidden left) */
+          var pos = p === 0 ? 'c' : p === 1 ? 'r' : p === n - 1 ? 'l' : (p === 2 ? 'hr' : 'hl');
+          s.setAttribute('data-pos', pos);
+          s.setAttribute('aria-hidden', pos === 'c' ? 'false' : 'true');
+        });
+      }
+      function go(k) { cur = (k + n) % n; layout(); restart(); }
+      function restart() {
+        clearTimeout(timer);
+        if (reduced() || document.hidden) return;
+        timer = setTimeout(function () { go(cur + 1); }, HOLD);
+      }
+      slides.forEach(function (s, i) {
+        s.addEventListener('click', function () { if (i !== cur) go(i); });
+      });
+      document.addEventListener('visibilitychange', restart);
+      document.addEventListener('konihaus:motion', restart);
+      layout(); restart();
+    })();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+/* App landing page (app.konihaus.ch) – loaded after styles.css */
+.app-hero { background: radial-gradient(ellipse 80% 70% at 75% 40%, rgba(61,107,79,.55) 0%, transparent 70%), var(--forest-deep); padding: 130px 0 80px; overflow: hidden; }
+.app-hero__in { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+.app-hero .sec-eye { color: var(--amber-warm); }
+.app-hero__h { font-family: var(--serif); font-size: clamp(44px, 6.4vw, 76px); font-weight: 300; line-height: 1.04; letter-spacing: -.03em; color: var(--parchment); margin: 8px 0 22px; }
+.app-hero__h em { color: var(--forest-light); font-style: italic; }
+.app-hero__sub { font-size: 1.0625em; line-height: 1.7; color: rgba(247,244,237,.78); max-width: 520px; margin-bottom: 32px; }
+.app-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+.app-hero__note { font-size: .8125em; color: rgba(247,244,237,.55); }
+.app-hero__ph { display: flex; justify-content: center; }
+
+.app-phone { position: relative; width: 280px; max-width: 100%; aspect-ratio: 1293 / 2656; filter: drop-shadow(0 28px 34px rgba(0,0,0,.45)); }
+.app-phone::before { content: ""; position: absolute; left: 4.486%; top: 1.883%; width: 91.183%; height: 96.235%; background: #294a34; border-radius: 9% / 4.2%; }
+.app-phone > img { position: absolute; left: 4.486%; top: 5.347%; width: 91.183%; height: 92.77%; display: block; object-fit: fill; border-radius: 0 0 9% 9% / 0 0 4.4% 4.4%; }
+.app-phone::after { content: ""; position: absolute; inset: 0; background: url("/img/iphone-frame.webp") center / 100% 100% no-repeat; pointer-events: none; }
+.app-rotor { --pw: min(270px, 40vw); position: relative; width: var(--pw); aspect-ratio: 1293 / 2656; margin: 0 auto; }
+.app-rotor .app-phone__img { position: absolute; inset: 0; width: 100%; max-width: none; cursor: pointer; transition: transform .8s cubic-bezier(.45,.05,.25,1), opacity .8s ease; will-change: transform, opacity; }
+.app-rotor [data-pos="c"]  { transform: translateX(0) scale(1);        opacity: 1;   z-index: 3; cursor: default; }
+.app-rotor [data-pos="l"]  { transform: translateX(-72%) scale(.7);    opacity: .5;  z-index: 2; }
+.app-rotor [data-pos="r"]  { transform: translateX(72%) scale(.7);     opacity: .5;  z-index: 2; }
+.app-rotor [data-pos="hl"] { transform: translateX(-30%) scale(.5);    opacity: 0;   z-index: 1; pointer-events: none; }
+.app-rotor [data-pos="hr"] { transform: translateX(30%) scale(.5);     opacity: 0;   z-index: 1; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .app-rotor .app-phone__img { transition: none; } }
+html[data-motion="reduce"] .app-rotor .app-phone__img { transition: none; }
+@media (max-width: 600px) and (orientation: portrait) {
+  .app-rotor { --pw: min(62vw, 270px); }
+  .app-rotor [data-pos="l"]  { transform: translateX(-38%) scale(.7); }
+  .app-rotor [data-pos="r"]  { transform: translateX(38%) scale(.7); }
+  .app-rotor [data-pos="hl"] { transform: translateX(-18%) scale(.5); }
+  .app-rotor [data-pos="hr"] { transform: translateX(18%) scale(.5); }
+}
+
+.app-feats { background: var(--parchment); padding: 96px 0 40px; }
+.app-head { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+.app-h2 { font-family: var(--serif); font-size: clamp(32px, 4.4vw, 52px); font-weight: 300; line-height: 1.08; letter-spacing: -.02em; color: var(--forest); }
+.app-h2 em { color: var(--forest-mid); font-style: italic; }
+.app-feat { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; padding: 28px 0 56px; }
+.app-feat--rev .app-feat__txt { order: 2; }
+.app-feat__txt { max-width: 440px; justify-self: end; }
+.app-feat--rev .app-feat__txt { justify-self: start; }
+.app-feat__num { display: block; font-family: var(--serif); font-size: 1.1em; color: var(--forest-mid); letter-spacing: .12em; margin-bottom: 10px; }
+.app-feat__t { font-family: var(--serif); font-size: clamp(28px, 3.2vw, 38px); font-weight: 400; color: var(--forest); margin-bottom: 12px; }
+.app-feat__b { font-size: 1.0625em; line-height: 1.7; color: var(--ink-2); }
+.app-feat__ph { display: flex; justify-content: center; }
+.app-feat--rev .app-feat__ph { order: 1; }
+
+.app-principles { background: var(--forest-deep); padding: 88px 0; }
+.app-principles .app-h2 { color: var(--parchment); }
+.app-principles .app-h2 em { color: var(--forest-light); }
+.app-principles .sec-eye { color: var(--amber-warm); }
+.app-pgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.app-p { border-top: 2px solid rgba(247,244,237,.18); padding-top: 18px; }
+.app-p h3 { font-family: var(--serif); font-size: 1.6em; font-weight: 400; color: var(--parchment); margin-bottom: 8px; }
+.app-p p { line-height: 1.65; color: rgba(247,244,237,.75); }
+
+.app-cta { background: var(--parchment); padding: 96px 0 88px; text-align: center; }
+.app-cta__p { max-width: 560px; margin: 18px auto 28px; font-size: 1.0625em; line-height: 1.7; color: var(--ink-2); }
+.app-disc { max-width: 560px; margin: 28px auto 0; font-size: .8125em; line-height: 1.6; color: var(--ink-2); opacity: .75; }
+
+@media (max-width: 900px) {
+  .app-hero { padding: 104px 0 56px; }
+  .app-hero__in { grid-template-columns: 1fr; gap: 40px; text-align: left; }
+  .app-feat { grid-template-columns: 1fr; gap: 28px; padding: 16px 0 44px; }
+  .app-feat__txt, .app-feat--rev .app-feat__txt { order: 1; justify-self: start; max-width: none; }
+  .app-feat__ph, .app-feat--rev .app-feat__ph { order: 2; }
+  .app-pgrid { grid-template-columns: 1fr; gap: 24px; }
+  .app-feats { padding-top: 64px; }
+}
+@media (max-height: 520px) and (orientation: landscape) {
+  .app-hero { padding: 84px 0 40px; }
+  .app-hero__in { grid-template-columns: 1.3fr .7fr; gap: 24px; }
+  .app-hero__in { grid-template-columns: 1.5fr .8fr; }
+  .app-hero__sub { max-width: 440px; }
+  .app-rotor { --pw: 112px; }
+}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /koni/
+
+Sitemap: https://app.konihaus.ch/sitemap.xml
