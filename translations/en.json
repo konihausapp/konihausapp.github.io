@@ -1115,6 +1115,16 @@
     "alt2": "Konihaus app: rooms with lights, shades and windows",
     "alt3": "Konihaus app: heating and climate with 72-hour trends",
     "alt4": "Konihaus app: security with window and door status",
-    "alt5": "Konihaus app: energy usage with a daily chart"
+    "alt5": "Konihaus app: energy usage with a daily chart",
+    "dv_eye": "On every device",
+    "dv_h2": "One app, <em>every screen.</em>",
+    "dv_sub": "The interface adapts automatically to smartphone, tablet and computer. The same familiar app everywhere, with nothing to install.",
+    "dv1_t": "Smartphone",
+    "dv1_b": "On the go or on the sofa: see at a glance whether a window is open, and control lights, blinds and heating.",
+    "dv2_t": "Tablet",
+    "dv2_b": "As a wall panel or on the kitchen table: the whole house on one large screen.",
+    "dv3_t": "Computer",
+    "dv3_b": "At your desk in the browser: take your time with trends and energy data.",
+    "alt6": "Konihaus app on tablet, laptop and smartphone"
   }
 }

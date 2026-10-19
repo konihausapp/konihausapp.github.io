@@ -73,3 +73,43 @@ html[data-motion="reduce"] .app-rotor .app-phone__img { transition: none; }
   .app-hero__sub { max-width: 440px; }
   .app-rotor { --pw: 112px; }
 }
+
+/* nav: "konihaus app" wordmark must never wrap or squash the icon on narrow phones */
+.nav a.logo { min-width: 0; flex-shrink: 1; }
+.nav a.logo .wordmark { white-space: nowrap; }
+.nav a.logo .logo-image { flex: 0 0 auto; background-size: contain; }
+@media (max-width: 420px) {
+  .nav a.logo { gap: 8px; font-size: 21px; }
+  .nav a.logo .logo-image { width: 30px; height: 30px; }
+  .nav .language-picker { margin-right: 2px; }
+}
+@media (max-width: 350px) {
+  .nav a.logo { gap: 6px; font-size: 18px; }
+  .nav a.logo .logo-image { width: 26px; height: 26px; }
+}
+
+/* feature phones: flat again, lifted a little above a soft "table" shadow */
+.app-feat__ph { position: relative; padding-bottom: 36px; }
+.app-feat__ph .app-phone { filter: none; transform: translateY(-10px); }
+.app-feat__ph::after {
+  content: ""; position: absolute; left: 50%; bottom: 2px; width: 62%; max-width: 230px; height: 30px; transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(20, 38, 28, .42) 0%, rgba(20, 38, 28, .18) 45%, rgba(20, 38, 28, 0) 72%);
+  filter: blur(6px); pointer-events: none;
+}
+
+/* multi-device section */
+.app-devices { background: linear-gradient(180deg, #ece6d6 0%, #e6dfcc 100%); padding: 96px 0 88px; overflow: hidden; }
+.app-devices .app-head { margin-bottom: 40px; }
+.app-devices__sub { margin-top: 16px; font-size: 1.0625em; line-height: 1.7; color: var(--ink-2); }
+.app-devices__img { position: relative; max-width: 1060px; margin: 0 auto 48px; }
+.app-devices__img img { display: block; width: 100%; height: auto; filter: drop-shadow(0 26px 30px rgba(20, 38, 28, .28)); }
+.app-devgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 960px; margin: 0 auto; }
+.app-dev { border-top: 2px solid rgba(41, 74, 52, .22); padding-top: 18px; }
+.app-dev h3 { font-family: var(--serif); font-size: 1.6em; font-weight: 400; color: var(--forest); margin-bottom: 8px; }
+.app-dev p { line-height: 1.65; color: var(--ink-2); }
+@media (max-width: 900px) {
+  .app-devices { padding: 64px 0 56px; }
+  .app-devgrid { grid-template-columns: 1fr; gap: 22px; }
+  .app-devices__img { margin-bottom: 36px; }
+}
+@media (max-width: 600px) { .app-devices__img { width: calc(100% + 28px); max-width: none; margin-left: -14px; } }

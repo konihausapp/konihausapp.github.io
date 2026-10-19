@@ -1115,6 +1115,16 @@
     "alt2": "Konihaus-App: Räume mit Licht, Storen und Fenstern",
     "alt3": "Konihaus-App: Heizung und Klima mit 72-Stunden-Verläufen",
     "alt4": "Konihaus-App: Sicherheit mit Fenster- und Türstatus",
-    "alt5": "Konihaus-App: Energieverbrauch mit Tagesdiagramm"
+    "alt5": "Konihaus-App: Energieverbrauch mit Tagesdiagramm",
+    "dv_eye": "Auf jedem Gerät",
+    "dv_h2": "Eine App, <em>jedes Display.</em>",
+    "dv_sub": "Die Oberfläche passt sich automatisch an Smartphone, Tablet und Computer an. Überall dieselbe vertraute App, ohne etwas zu installieren.",
+    "dv1_t": "Smartphone",
+    "dv1_b": "Unterwegs oder auf dem Sofa: Sehen Sie sofort, ob ein Fenster offen ist, und steuern Sie Licht, Storen und Heizung.",
+    "dv2_t": "Tablet",
+    "dv2_b": "Als Wandpanel oder auf dem Küchentisch: das ganze Haus auf einem grossen Bildschirm.",
+    "dv3_t": "Computer",
+    "dv3_b": "Am Schreibtisch im Browser: Verläufe und Energiedaten in Ruhe ansehen.",
+    "alt6": "Konihaus-App auf Tablet, Laptop und Smartphone"
   }
 }
