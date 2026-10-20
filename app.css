@@ -123,3 +123,18 @@ html[data-motion="reduce"] .app-rotor .app-phone__img { transition: none; }
 html[data-motion="reduce"] .app-phone__load span { animation: none; }
 @media (prefers-reduced-motion: reduce) { .app-phone__load span { animation: none; } }
 @media (max-width: 480px) { .app-phone__load span { width: 22px; height: 22px; border-width: 2px; } }
+
+/* video modal */
+.app-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; background: rgba(20, 24, 22, .82); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); cursor: pointer; animation: app-fade .2s ease; }
+.app-modal .app-phone { position: relative; flex: none; width: auto; height: min(94vh, 94dvh); max-width: 94vw; aspect-ratio: 1293 / 2656; cursor: default; }
+.app-modal .app-phone > img, .app-modal .app-phone > video { cursor: pointer; }
+.app-modal__x { position: absolute; z-index: 2; top: max(14px, env(safe-area-inset-top)); right: max(14px, env(safe-area-inset-right)); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .16); color: #fff; cursor: pointer; }
+.app-modal__x:hover, .app-modal__x:focus-visible { background: rgba(255, 255, 255, .3); outline: 2px solid #fff; outline-offset: 2px; }
+html.app-modal-open { overflow: hidden; }
+@keyframes app-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .app-modal { animation: none; } }
+
+/* black "dynamic island" drawn over the video (hides the recording indicator in the source footage); sized relative to the screen area so it scales with the phone */
+.app-phone__island { position: absolute; z-index: 2; pointer-events: none; background: #000; border-radius: 999px;
+  left: calc(4.486% + 91.183% * 0.312); width: calc(91.183% * 0.376);
+  top: calc(1.883% + 96.235% * 0.0135); height: calc(96.235% * 0.0455); }

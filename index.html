@@ -160,6 +160,7 @@
           <div class="app-phone app-phone__img app-phone--video" data-pos="c">
             <video class="app-demo" poster="/img/app-demo-poster.jpg" muted loop playsinline autoplay preload="auto" disablepictureinpicture aria-label="Konihaus-App: Räume mit Licht, Storen und Fenstern" data-alt="2"><source src="/img/app-demo.mp4" type="video/mp4"></video>
             <div class="app-phone__load" aria-hidden="true"><span></span></div>
+            <div class="app-phone__island" aria-hidden="true"></div>
           </div>
           <div class="app-phone app-phone__img" data-pos="r"><img src="/img/climate.webp" width="433" height="938" decoding="async" alt="Konihaus-App: Heizung und Klima mit 72-Stunden-Verläufen" data-alt="3"></div>
         </div>
@@ -371,7 +372,31 @@
       v.addEventListener('waiting', function () { ph.classList.remove('is-ready'); });
       v.addEventListener('stalled', function () { if (v.readyState < 3) ph.classList.remove('is-ready'); });
       v.addEventListener('error', ready);
-      //v.addEventListener('click', function () { if (v.paused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else { v.play(); } });
+      /* click opens the phone in a full-screen modal (same <video>, keeps playing); gray area, X or Esc puts it back into the hero */
+      var holder = null, ov = null, lastFocus = null;
+      function openModal() {
+        if (ov) return;
+        lastFocus = document.activeElement;
+        holder = document.createComment('app-demo'); ph.parentNode.insertBefore(holder, ph);
+        ov = document.createElement('div'); ov.className = 'app-modal'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true');
+        var x = document.createElement('button'); x.type = 'button'; x.className = 'app-modal__x';
+        x.setAttribute('aria-label', document.documentElement.lang === 'en' ? 'Close' : 'Schließen');
+        x.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg>';
+        ov.appendChild(x); ov.appendChild(ph); document.body.appendChild(ov);
+        document.documentElement.classList.add('app-modal-open');
+        ov.addEventListener('click', function (e) { if (e.target !== v) closeModal(); });
+        x.focus();
+        if (!reduced() && v.paused) play();
+      }
+      function closeModal() {
+        if (!ov) return;
+        holder.parentNode.insertBefore(ph, holder); holder.parentNode.removeChild(holder);
+        ov.parentNode.removeChild(ov); ov = null; holder = null;
+        document.documentElement.classList.remove('app-modal-open');
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+      v.addEventListener('click', function (e) { if (!ov) { e.stopPropagation(); openModal(); } });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
       document.addEventListener('visibilitychange', function () { if (document.hidden) v.pause(); else play(); });
       document.addEventListener('konihaus:motion', function () { if (reduced()) { v.pause(); ready(); } else play(); });
       if (reduced()) { v.removeAttribute('autoplay'); v.pause(); ready(); } else { play(); }
