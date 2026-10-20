@@ -11,31 +11,50 @@
     a { color: #e8c06a; }
     p { margin: 0 0 14px; line-height: 1.5; }
     .small { font-size: 0.85rem; opacity: 0.8; }
+    button { font: inherit; font-weight: 600; padding: 10px 22px; border: 0; border-radius: 999px; background: #e8c06a; color: #2a4a35; cursor: pointer; margin: 4px 0 14px; }
+    [hidden] { display: none !important; }
   </style>
 </head>
 <body>
   <div>
-    <p id="msg">Opening Konihaus…</p>
+    <p id="msg">Looking for your home…</p>
+    <p><button id="retry" type="button" hidden>Try again</button></p>
     <p class="small">
       <a id="main" href="https://home2.tail9c3317.ts.net/local/konihaus/index.html">Open via Tailscale</a> ·
       <a id="local" href="http://192.168.1.148:8123/local/konihaus/index.html">Open on the home network</a>
     </p>
   </div>
   <script>
-    // Home Assistant is reachable in two ways: over Tailscale (https) and, at home, directly on the local network (http).
-    // This page cannot test the http address itself (a secure page may not talk to http), so it tests Tailscale
-    // and, when that does not answer, opens the local address (opening a page is allowed, unlike fetching it).
+    // Home Assistant has two addresses: Tailscale (https) and the home network (http). They are checked in this
+    // order and the first that answers is opened. When neither answers this page stays put with a "Try again" button.
+    // Note: browsers do not let a secure (https) page test an http address, so on the home-network address the check
+    // can fail even though it is up; the link below it opens that address directly in that case.
     (function () {
       var MAIN = document.getElementById("main").href, LOCAL = document.getElementById("local").href;
-      var msg = document.getElementById("msg");
-      var ctl = new AbortController(), timer = setTimeout(function () { ctl.abort(); }, 3500);
-      fetch(MAIN + "?_=" + Date.now(), { mode: "no-cors", cache: "no-store", signal: ctl.signal })
-        .then(function () { clearTimeout(timer); location.replace(MAIN); })
-        .catch(function () {
-          clearTimeout(timer);
-          msg.textContent = "Tailscale is not reachable. Opening your home on the local network…";
-          setTimeout(function () { location.replace(LOCAL); }, 600);
+      var msg = document.getElementById("msg"), retry = document.getElementById("retry");
+      function probe(url, ms) {
+        return new Promise(function (resolve) {
+          var ctl = new AbortController(), timer = setTimeout(function () { ctl.abort(); }, ms);
+          fetch(url + "?_=" + Date.now(), { mode: "no-cors", cache: "no-store", signal: ctl.signal })
+            .then(function () { clearTimeout(timer); resolve(true); })
+            .catch(function () { clearTimeout(timer); resolve(false); });
         });
+      }
+      function run() {
+        retry.hidden = true;
+        msg.textContent = "Checking Tailscale…";
+        probe(MAIN, 3500).then(function (ok) {
+          if (ok) { msg.textContent = "Opening your home…"; location.replace(MAIN); return; }
+          msg.textContent = "Tailscale is not reachable. Checking the home network…";
+          probe(LOCAL, 2500).then(function (ok2) {
+            if (ok2) { msg.textContent = "Opening your home on the home network…"; location.replace(LOCAL); return; }
+            msg.textContent = "Your home cannot be reached right now. Turn on Tailscale or connect to the home Wi-Fi, then try again.";
+            retry.hidden = false;
+          });
+        });
+      }
+      retry.addEventListener("click", run);
+      run();
     })();
   </script>
 </body>
