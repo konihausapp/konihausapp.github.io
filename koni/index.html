@@ -19,7 +19,6 @@
   <div>
     <p id="msg">Looking for your home…</p>
     <p><button id="retry" type="button" hidden>Try again</button></p>
-    <p class="small" id="diag" hidden></p>
     <p class="small">
       <a id="main" href="https://home2.tail9c3317.ts.net/local/konihaus/index.html">Open via Tailscale</a> ·
       <a id="local" href="http://192.168.1.148:8123/local/konihaus/index.html">Open on the home network</a>
@@ -33,17 +32,16 @@
     (function () {
       var MAIN = document.getElementById("main").href, LOCAL = document.getElementById("local").href;
       var msg = document.getElementById("msg"), retry = document.getElementById("retry");
-      var diag = document.getElementById("diag"), notes = [];
       function probe(url, ms) {
         return new Promise(function (resolve) {
           var ctl = new AbortController(), timer = setTimeout(function () { ctl.abort(); }, ms);
           fetch(url + "?_=" + Date.now(), { mode: "no-cors", cache: "no-store", signal: ctl.signal })
             .then(function () { clearTimeout(timer); resolve(true); })
-            .catch(function (e) { clearTimeout(timer); notes.push(url.split("/")[2] + ": " + (e && e.name === "AbortError" ? "no answer in " + ms / 1000 + " s" : (e && e.message) || "blocked")); resolve(false); });
+            .catch(function () { clearTimeout(timer); resolve(false); });
         });
       }
       function run() {
-        retry.hidden = true; diag.hidden = true; notes = [];
+        retry.hidden = true;
         msg.textContent = "Checking Tailscale…";
         probe(MAIN, 3500).then(function (ok) {
           if (ok) { msg.textContent = "Opening your home…"; location.replace(MAIN); return; }
@@ -51,7 +49,7 @@
           probe(LOCAL, 2500).then(function (ok2) {
             if (ok2) { msg.textContent = "Opening your home on the home network…"; location.replace(LOCAL); return; }
             msg.textContent = "Your home cannot be reached right now. Turn on Tailscale or connect to the home Wi-Fi, then try again.";
-            retry.hidden = false; diag.textContent = "Check result: " + notes.join(" · "); diag.hidden = false;
+            retry.hidden = false;
           });
         });
       }

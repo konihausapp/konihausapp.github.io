@@ -4,7 +4,7 @@
 .app-hero .sec-eye { color: var(--amber-warm); }
 .app-hero__h { font-family: var(--serif); font-size: clamp(44px, 6.4vw, 76px); font-weight: 300; line-height: 1.04; letter-spacing: -.03em; color: var(--parchment); margin: 8px 0 22px; }
 .app-hero__h em { color: var(--forest-light); font-style: italic; }
-.app-hero__sub { font-size: 1.0625em; line-height: 1.7; color: rgba(247,244,237,.78); max-width: 520px; margin-bottom: 32px; }
+.app-hero__sub { font-size: 1.0625em; line-height: 1.7; color: rgba(247,244,237,.78); max-width: 360px; margin-bottom: 32px; }
 .app-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
 .app-hero__note { font-size: .8125em; color: rgba(247,244,237,.55); }
 .app-hero__ph { display: flex; justify-content: center; }
