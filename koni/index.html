@@ -5,15 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Konihaus</title>
   <meta name="robots" content="noindex" />
-  <meta http-equiv="refresh" content="0; url=https://home2.tail9c3317.ts.net/local/konihaus/index.html" />
   <link rel="canonical" href="https://home2.tail9c3317.ts.net/local/konihaus/index.html" />
   <style>
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #2a4a35; color: #f7f4ed; font-family: system-ui, sans-serif; text-align: center; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #2a4a35; color: #f7f4ed; font-family: system-ui, sans-serif; text-align: center; padding: 0 20px; }
     a { color: #e8c06a; }
+    p { margin: 0 0 14px; line-height: 1.5; }
+    .small { font-size: 0.85rem; opacity: 0.8; }
   </style>
-  <script>location.replace("https://home2.tail9c3317.ts.net/local/konihaus/index.html");</script>
 </head>
 <body>
-  <p>Opening Konihaus…<br /><a href="https://home2.tail9c3317.ts.net/local/konihaus/index.html">Tap here if nothing happens</a></p>
+  <div>
+    <p id="msg">Opening Konihaus…</p>
+    <p class="small">
+      <a id="main" href="https://home2.tail9c3317.ts.net/local/konihaus/index.html">Open via Tailscale</a> ·
+      <a id="local" href="http://192.168.1.148:8123/local/konihaus/index.html">Open on the home network</a>
+    </p>
+  </div>
+  <script>
+    // Home Assistant is reachable in two ways: over Tailscale (https) and, at home, directly on the local network (http).
+    // This page cannot test the http address itself (a secure page may not talk to http), so it tests Tailscale
+    // and, when that does not answer, opens the local address (opening a page is allowed, unlike fetching it).
+    (function () {
+      var MAIN = document.getElementById("main").href, LOCAL = document.getElementById("local").href;
+      var msg = document.getElementById("msg");
+      var ctl = new AbortController(), timer = setTimeout(function () { ctl.abort(); }, 3500);
+      fetch(MAIN + "?_=" + Date.now(), { mode: "no-cors", cache: "no-store", signal: ctl.signal })
+        .then(function () { clearTimeout(timer); location.replace(MAIN); })
+        .catch(function () {
+          clearTimeout(timer);
+          msg.textContent = "Tailscale is not reachable. Opening your home on the local network…";
+          setTimeout(function () { location.replace(LOCAL); }, 600);
+        });
+    })();
+  </script>
 </body>
 </html>
