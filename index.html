@@ -155,7 +155,14 @@
         <p class="app-hero__note reveal d3" data-i18n="app_page.hero_note">Neu bei Konihaus · Bilder aus einer echten Installation</p>
       </div>
       <div class="app-hero__ph reveal d2">
-        <div class="app-rotor" id="app-rotor"><div class="app-phone app-phone__img is-on"><img src="/img/favorites.webp" width="433" height="938" decoding="async" alt="Konihaus-App: Favoriten mit Türen, Wetter und Heizung" data-alt="1"></div><div class="app-phone app-phone__img"><img src="/img/rooms.webp" width="433" height="938" loading="lazy" decoding="async" alt="Konihaus-App: Räume mit Licht, Storen und Fenstern" data-alt="2"></div><div class="app-phone app-phone__img"><img src="/img/climate.webp" width="433" height="938" loading="lazy" decoding="async" alt="Konihaus-App: Heizung und Klima mit 72-Stunden-Verläufen" data-alt="3"></div><div class="app-phone app-phone__img"><img src="/img/security.webp" width="433" height="938" loading="lazy" decoding="async" alt="Konihaus-App: Sicherheit mit Fenster- und Türstatus" data-alt="4"></div><div class="app-phone app-phone__img"><img src="/img/energy.webp" width="433" height="938" loading="lazy" decoding="async" alt="Konihaus-App: Energieverbrauch mit Tagesdiagramm" data-alt="5"></div></div>
+        <div class="app-rotor" id="app-rotor">
+          <div class="app-phone app-phone__img" data-pos="l"><img src="/img/favorites.webp" width="433" height="938" decoding="async" alt="Konihaus-App: Favoriten mit Türen, Wetter und Heizung" data-alt="1"></div>
+          <div class="app-phone app-phone__img app-phone--video" data-pos="c">
+            <video class="app-demo" poster="/img/app-demo-poster.jpg" muted loop playsinline autoplay preload="auto" disablepictureinpicture aria-label="Konihaus-App: Räume mit Licht, Storen und Fenstern" data-alt="2"><source src="/img/app-demo.mp4" type="video/mp4"></video>
+            <div class="app-phone__load" aria-hidden="true"><span></span></div>
+          </div>
+          <div class="app-phone app-phone__img" data-pos="r"><img src="/img/climate.webp" width="433" height="938" decoding="async" alt="Konihaus-App: Heizung und Klima mit 72-Stunden-Verläufen" data-alt="3"></div>
+        </div>
       </div>
     </div>
   </header>
@@ -344,42 +351,30 @@
     /* alt texts follow the page language */
     (function () {
       function setAlts() {
-        try { document.querySelectorAll('img[data-alt]').forEach(function (im) { var t = i18n.getText('app_page', 'alt' + im.getAttribute('data-alt')); if (t) im.alt = t; }); } catch (e) {}
+        try { document.querySelectorAll('img[data-alt], video[data-alt]').forEach(function (im) { var t = i18n.getText('app_page', 'alt' + im.getAttribute('data-alt')); if (t) { if (im.tagName === 'VIDEO') im.setAttribute('aria-label', t); else im.alt = t; } }); } catch (e) {}
       }
       new MutationObserver(function () { setTimeout(setAlts, 50); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
       window.addEventListener('load', function () { setTimeout(setAlts, 300); });
     })();
-    /* hero phones: three visible at a time (centre in front, neighbours smaller and faded, partly covered), rotating like a carousel */
+    /* hero phones: Favorites left, Rooms (demo video, looping) in the middle, Climate right. Spinner until the video plays; pauses when the tab is hidden or reduced motion is on. */
     (function () {
-      var box = document.getElementById('app-rotor');
-      if (!box) return;
-      var slides = Array.prototype.slice.call(box.querySelectorAll('.app-phone__img'));
-      var n = slides.length, cur = 0, timer = null, HOLD = 4200;
+      var v = document.querySelector('.app-demo');
+      if (!v) return;
+      var ph = v.closest('.app-phone');
       function reduced() {
         var d = document.documentElement;
         return d.getAttribute('data-motion') === 'reduce' || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
       }
-      function layout() {
-        slides.forEach(function (s, i) {
-          var p = (i - cur + n) % n;
-          /* 0 centre, 1 right, n-1 left, others hidden behind (2 = hidden right, 3 = hidden left) */
-          var pos = p === 0 ? 'c' : p === 1 ? 'r' : p === n - 1 ? 'l' : (p === 2 ? 'hr' : 'hl');
-          s.setAttribute('data-pos', pos);
-          s.setAttribute('aria-hidden', pos === 'c' ? 'false' : 'true');
-        });
-      }
-      function go(k) { cur = (k + n) % n; layout(); restart(); }
-      function restart() {
-        clearTimeout(timer);
-        if (reduced() || document.hidden) return;
-        timer = setTimeout(function () { go(cur + 1); }, HOLD);
-      }
-      slides.forEach(function (s, i) {
-        s.addEventListener('click', function () { if (i !== cur) go(i); });
-      });
-      document.addEventListener('visibilitychange', restart);
-      document.addEventListener('konihaus:motion', restart);
-      layout(); restart();
+      function ready() { ph.classList.add('is-ready'); }
+      function play() { if (reduced() || document.hidden) return; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      v.addEventListener('playing', ready);
+      v.addEventListener('waiting', function () { ph.classList.remove('is-ready'); });
+      v.addEventListener('stalled', function () { if (v.readyState < 3) ph.classList.remove('is-ready'); });
+      v.addEventListener('error', ready);
+      //v.addEventListener('click', function () { if (v.paused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else { v.play(); } });
+      document.addEventListener('visibilitychange', function () { if (document.hidden) v.pause(); else play(); });
+      document.addEventListener('konihaus:motion', function () { if (reduced()) { v.pause(); ready(); } else play(); });
+      if (reduced()) { v.removeAttribute('autoplay'); v.pause(); ready(); } else { play(); }
     })();
   </script>
 </body>
