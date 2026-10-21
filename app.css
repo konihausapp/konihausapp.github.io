@@ -141,9 +141,15 @@ html.app-modal-open { overflow: hidden; }
 
 .app-marc { background: var(--parchment, #f7f4ec); padding: 88px 0; }
 .app-marc__card { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; max-width: 1060px; margin: 0 auto; }
-.app-marc__img { display: block; border-radius: 18px; overflow: hidden; box-shadow: 0 22px 44px rgba(20, 38, 28, .2); }
-.app-marc__img img { display: block; width: 100%; height: auto; transition: transform .5s ease; }
-.app-marc__img:hover img { transform: scale(1.03); }
+.app-marc__video { position: relative; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: #ece6d6; box-shadow: 0 22px 44px rgba(20, 38, 28, .2); }
+.app-marc__poster { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; display: block; }
+.app-marc__poster img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.app-marc__play { position: absolute; left: 25%; top: 50%; width: 72px; height: 72px; margin: -36px 0 0 -36px; border-radius: 50%; background: var(--forest-mid); display: grid; place-items: center; box-shadow: 0 8px 24px rgba(20, 38, 28, .35); transition: transform .25s ease, background .25s ease; }
+.app-marc__play svg { margin-left: 4px; }
+.app-marc__poster:hover .app-marc__play, .app-marc__poster:focus-visible .app-marc__play { background: var(--forest); transform: scale(1.08); }
+.app-marc__poster:focus-visible { outline: 3px solid var(--forest); outline-offset: -3px; }
+.app-marc__video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.app-marc__yt { margin-top: 10px; font-size: .75em; color: var(--ink-3, var(--ink-2)); }
 .app-marc__txt .app-h2 { margin: 6px 0 16px; }
 .app-marc__p { line-height: 1.7; color: var(--ink-2); margin-bottom: 24px; }
 .app-marc__note { margin-top: 14px; font-size: .8125em; color: var(--ink-3, var(--ink-2)); }
