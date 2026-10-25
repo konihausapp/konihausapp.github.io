@@ -1,0 +1,3 @@
+
+# FUSE leftovers (files deleted while still open)
+.fuse_hidden*
