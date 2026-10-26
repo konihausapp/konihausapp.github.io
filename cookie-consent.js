@@ -22,7 +22,7 @@
   'use strict';
 
   // ── Configuration ──────────────────────────────────────────────────────────
-  const GA_ID = 'G-0VZ3EBY1JT';
+  const GA_ID = 'G-CEKYEFRXBX';
   const STORAGE_KEY = 'konihaus_consent';
   const CONSENT_VERSION = 1;
   const MAX_AGE_MS = 365 * 24 * 60 * 60 * 1000; // 12 months
