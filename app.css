@@ -38,7 +38,7 @@ html[data-motion="reduce"] .app-rotor .app-phone__img { transition: none; }
 .app-feat--rev .app-feat__txt { order: 2; }
 .app-feat__txt { max-width: 440px; justify-self: end; }
 .app-feat--rev .app-feat__txt { justify-self: start; }
-.app-feat__num { display: block; font-family: var(--serif); font-size: 1.1em; color: var(--forest-mid); letter-spacing: .12em; margin-bottom: 10px; }
+.app-feat__num { display: block; font-family: var(--sans, 'Outfit', system-ui, sans-serif); font-size: 15px; font-weight: 600; font-variant-numeric: lining-nums; color: var(--forest); letter-spacing: .14em; margin-bottom: 10px; }
 .app-feat__t { font-family: var(--serif); font-size: clamp(28px, 3.2vw, 38px); font-weight: 400; color: var(--forest); margin-bottom: 12px; }
 .app-feat__b { font-size: 1.0625em; line-height: 1.7; color: var(--ink-2); }
 .app-feat__ph { display: flex; justify-content: center; }
@@ -154,3 +154,24 @@ html.app-modal-open { overflow: hidden; }
 .app-marc__p { line-height: 1.7; color: var(--ink-2); margin-bottom: 24px; }
 .app-marc__note { margin-top: 14px; font-size: .8125em; color: var(--ink-3, var(--ink-2)); }
 @media (max-width: 900px) { .app-marc { padding: 60px 0; } .app-marc__card { grid-template-columns: 1fr; gap: 28px; } }
+
+/* Style showcase: four themes of the same screen */
+.app-styles { background: var(--forest-deep); padding: 88px 0 96px; }
+.app-styles .app-h2 { color: var(--parchment); }
+.app-styles .app-h2 em { color: var(--amber-warm); }
+.app-styles .sec-eye { color: var(--amber-warm); }
+.app-styles__sub { margin-top: 16px; font-size: 1.0625em; line-height: 1.7; color: rgba(247, 244, 237, .82); }
+.app-styles .app-head { margin-bottom: 48px; }
+.app-themes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; max-width: 1060px; margin: 0 auto; }
+.app-theme { margin: 0; text-align: center; }
+.app-theme .app-phone { width: 100%; max-width: 240px; margin: 0 auto; }
+.app-theme figcaption { margin-top: 18px; font-size: .8125em; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--amber-warm); }
+@media (max-width: 760px) {
+  .app-styles { padding: 64px 0 64px; }
+  .app-themes { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; }
+}
+/* Theme screenshots: same placement as the other phones (clear of the notch); the strip above is tinted to match each theme */
+.app-theme:nth-child(1) .app-phone::before { background: #fcf9f3; }
+.app-theme:nth-child(2) .app-phone::before { background: #151515; }
+.app-theme:nth-child(3) .app-phone::before { background: #051735; }
+.app-theme:nth-child(4) .app-phone::before { background: #f9fbfc; }
